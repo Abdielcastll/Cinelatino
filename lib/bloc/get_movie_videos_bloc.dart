@@ -19,7 +19,6 @@ class MovieVideosBloc {
     await _subject.drain();
     _subject.close();
   }
-
   BehaviorSubject<VideoResponse> get subject => _subject;
   
 }
