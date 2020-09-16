@@ -85,7 +85,6 @@ class MovieRepository {
     if (cargando) return [];
     cargando = true; 
     page++;
-
     var params = {
       "api_key": apiKey,
       "language": "es-ES",
