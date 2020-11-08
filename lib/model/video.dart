@@ -12,8 +12,8 @@ class Video {
          this.type);
 
   Video.fromJson(Map<String, dynamic> json)
-      : id = json["id"],
-        key = json["key"],
+      : id   = json["id"],
+        key  = json["key"],
         name = json["name"],
         site = json["site"],
         type = json["type"];

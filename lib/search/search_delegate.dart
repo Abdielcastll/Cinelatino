@@ -57,7 +57,7 @@ class DataSearch extends SearchDelegate {
               return ListTile(
               
                 leading: Image(
-                  image: NetworkImage((pelicula.posterPath == null)
+                  image: NetworkImage((pelicula.posterPath != null)
                                       ?("https://image.tmdb.org/t/p/w300/" + pelicula.posterPath)
                                       : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIvKqBwu4OsBFfTsP1qRyzAuqeKqjX-ZJP6w&usqp=CAU"
                   ),
@@ -109,7 +109,10 @@ class DataSearch extends SearchDelegate {
               
                 leading: FadeInImage(
                   placeholder: AssetImage('assets/img/no-image.jpg'),
-                  image: NetworkImage("https://image.tmdb.org/t/p/w200/" + pelicula.posterPath,),
+                  image: NetworkImage((pelicula.posterPath != null)
+                                      ?("https://image.tmdb.org/t/p/w300/" + pelicula.posterPath)
+                                      : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIvKqBwu4OsBFfTsP1qRyzAuqeKqjX-ZJP6w&usqp=CAU"
+                  ),
                     width: 50.0,
                     fit: BoxFit.contain,
                 ),

@@ -54,6 +54,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       snapshot.data.error.length > 0) {
                     return _buildErrorWidget(snapshot.data.error);
                   }
+
                   return _buildVideoWidget(snapshot.data);
                 } else if (snapshot.hasError) {
                   return _buildErrorWidget(snapshot.error);
@@ -84,8 +85,11 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                             image: new DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
-                                    "https://image.tmdb.org/t/p/original/" +
-                                        movie.backPoster)),
+                                    (movie.backPoster != null)
+                                      ?("https://image.tmdb.org/t/p/w300/" + movie.backPoster)
+                                      : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIvKqBwu4OsBFfTsP1qRyzAuqeKqjX-ZJP6w&usqp=CAU"
+                  )
+                                    ),
                           ),
                           child: new Container(
                             decoration: new BoxDecoration(
@@ -207,6 +211,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
 
   Widget _buildVideoWidget(VideoResponse data) {
     List<Video> videos = data.videos;
+    print(videos);
+    if (videos.isNotEmpty) {
+    
     return FloatingActionButton(
       backgroundColor: Style.Colors.secondColor,
       onPressed: () {
@@ -227,5 +234,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
       },
       child: Icon(Icons.play_arrow),
     );
+    } else {
+      return Container();
+    }
   }
 }

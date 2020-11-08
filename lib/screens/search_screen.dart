@@ -84,8 +84,10 @@ class _SearchScreenState extends State<SearchScreen> {
                             image: new DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
-                                    "https://image.tmdb.org/t/p/original/" +
-                                        movie.backdropPath)),
+                                    (movie.posterPath != null)
+                                      ?("https://image.tmdb.org/t/p/w300/" + movie.posterPath)
+                                      : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIvKqBwu4OsBFfTsP1qRyzAuqeKqjX-ZJP6w&usqp=CAU"
+                  )),
                           ),
                           child: new Container(
                             decoration: new BoxDecoration(
