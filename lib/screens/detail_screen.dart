@@ -70,49 +70,48 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                 expandedHeight: 200.0,
                 pinned: true,
                 flexibleSpace: new FlexibleSpaceBar(
-                    title: Text(
-                      movie.title.length > 40
-                          ? movie.title.substring(0, 37) + "..."
-                          : movie.title,
-                      style: TextStyle(
-                          fontSize: 12.0, fontWeight: FontWeight.normal),
-                    ),
-                    background: Stack(
-                      children: <Widget>[
-                        Container(
+                  title: Text(
+                    movie.title.length > 40
+                        ? movie.title.substring(0, 37) + "..."
+                        : movie.title,
+                    style: TextStyle(
+                        fontSize: 12.0, fontWeight: FontWeight.normal),
+                  ),
+                  background: Stack(
+                    children: <Widget>[
+                      Container(
+                        decoration: new BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          image: new DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage((movie.backPoster != null)
+                                  ? ("https://image.tmdb.org/t/p/w300/" +
+                                      movie.backPoster)
+                                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIvKqBwu4OsBFfTsP1qRyzAuqeKqjX-ZJP6w&usqp=CAU")),
+                        ),
+                        child: new Container(
                           decoration: new BoxDecoration(
-                            shape: BoxShape.rectangle,
-                            image: new DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    (movie.backPoster != null)
-                                      ?("https://image.tmdb.org/t/p/w300/" + movie.backPoster)
-                                      : "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRIvKqBwu4OsBFfTsP1qRyzAuqeKqjX-ZJP6w&usqp=CAU"
-                  )
-                                    ),
-                          ),
-                          child: new Container(
-                            decoration: new BoxDecoration(
-                                color: Colors.black.withOpacity(0.5)),
-                          ),
+                              color: Colors.black.withOpacity(0.5)),
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter,
-                                stops: [
-                                  0.1,
-                                  0.9
-                                ],
-                                colors: [
-                                  Colors.black.withOpacity(0.4),
-                                  Colors.black.withOpacity(0.0)
-                                ]),
-                          ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              stops: [
+                                0.1,
+                                0.9
+                              ],
+                              colors: [
+                                Colors.black.withOpacity(0.4),
+                                Colors.black.withOpacity(0.0)
+                              ]),
                         ),
-                      ],
-                    )),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               SliverPadding(
                   padding: EdgeInsets.all(0.0),
@@ -213,27 +212,26 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
     List<Video> videos = data.videos;
     print(videos);
     if (videos.isNotEmpty) {
-    
-    return FloatingActionButton(
-      backgroundColor: Style.Colors.secondColor,
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => VideoPlayerScreen(
-              controller: YoutubePlayerController(
-                initialVideoId: videos[0].key,
-                flags: YoutubePlayerFlags(
-                  autoPlay: true,
-                  mute: false,
+      return FloatingActionButton(
+        backgroundColor: Style.Colors.secondColor,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => VideoPlayerScreen(
+                controller: YoutubePlayerController(
+                  initialVideoId: videos[0].key,
+                  flags: YoutubePlayerFlags(
+                    autoPlay: true,
+                    mute: false,
+                  ),
                 ),
               ),
             ),
-          ),
-        );
-      },
-      child: Icon(Icons.play_arrow),
-    );
+          );
+        },
+        child: Icon(Icons.play_arrow),
+      );
     } else {
       return Container();
     }
